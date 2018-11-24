@@ -25,5 +25,88 @@
 </head>
 <body>
 
+	<form class="contenform" action="#" th:action="@{/administrador/nuevaE}"
+		method="post" th:object="${empresas}">
+		<h1>Registro empresas</h1>
+
+		<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+			<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+		</ul>
+
+		<input type="hidden" value="nuevo" name="operacion">
+		<div class="well well-sm" style="color: #C2185B;">
+			<strong><span class="glyphicon glyphicon-asterisk"></span>Campos
+				requeridos</strong>
+		</div>
+		<div class="col-md-12">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="codigo">Nombre de la empresa:</label>
+					<div class="input-group">
+						<input type="text" class="form-control" name="nombreEmpresa"
+							id="codigo" th:field="*{nombreEmpresa}"
+							placeholder="Ingresa el nombre de la empresa"> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="codigo">Nombre del contacto:</label>
+					<div class="input-group">
+						<input type="text" class="form-control" name="nombreContacto"
+							id="codigo" th:field="*{nombreContacto}"
+							placeholder="Ingresa el nombre del contacto"> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="codigo">Correo:</label>
+					<div class="input-group">
+						<input type="text" class="form-control" name="correo" id="codigo"
+							th:field="${usuarios.correo}"
+							placeholder="Ingresa el correo de la empresa"> 
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="codigo">Dirección:</label>
+					<div class="input-group col-md-12">
+						<textarea class="form-control" placeholder="Ingresa la dirección"
+							th:field="*{direccion}" name="direccion"
+							style="text-align-last: start;"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="codigo">Telefono:</label>
+					<div class="input-group">
+						<input type="tel" class="form-control" name="telefono" id="codigo"
+							th:field="*{telefono}"
+							placeholder="Ingresa el numero de telefono">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="codigo">Rubro al que pertenece:</label>
+					<div class="input-group">
+						<select class="form-control" name="rubros" id="selrubros"
+							th:field="*{rubros.idRubro}">
+							<option th:each="rubros : ${listarubros}"
+								th:value="${rubros.idRubro}" th:utext="${rubros.rubro}" />
+						</select> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="codigo">Comisión:</label>
+					<div class="input-group">
+						<input type="number" step="any" class="form-control"
+							name="comision" id="codigo" th:field="*{comision}"
+							placeholder="Ingresa la comisión">
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<input type="submit" class="btn btn-info" value="Guardar"
+			name="Guardar">
+	</form>
+
 </body>
 </html>

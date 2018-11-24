@@ -40,7 +40,6 @@ import sv.edu.udb.www.Cuponeria.repositories.UsuariosRepository;
 
 
 @Controller
-@PreAuthorize("hasAuthority('Administrador')")
 @RequestMapping("/administrador")
 public class AdministradorController {
 	
@@ -71,6 +70,8 @@ public class AdministradorController {
 		return "/administrador/principal";
 
 	}
+	
+	
 
 
 

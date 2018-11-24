@@ -63,12 +63,7 @@ public class ClientesController {
 	CuponesRepository cuponesRepository;
 	
 	
-	@GetMapping("/inicio")
-	public String inicioAdmin() {
-		
-		return "/administrador/principal";
-
-	}
+	///
 
 
 
