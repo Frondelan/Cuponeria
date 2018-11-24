@@ -39,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/css/**", "/js/**","/public/**","/images/**","/api/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
-			.formLogin().loginPage("/login").defaultSuccessUrl("/login")
+			.formLogin().loginPage("/login").defaultSuccessUrl("/administrador/inicio")
 			.usernameParameter("correo").passwordParameter("password")
 			.permitAll();
 			
