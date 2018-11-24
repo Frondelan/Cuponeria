@@ -1,4 +1,4 @@
-package sv.edu.udb.wwww.Cuponeria.Cuponeria;
+package sv.edu.udb.www.Cuponeria.Cuponeria;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
