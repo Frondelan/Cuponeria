@@ -1,0 +1,72 @@
+package sv.edu.udb.www.Cuponeria.rest;
+
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import sv.edu.udb.www.Cuponeria.entities.Clientes;
+import sv.edu.udb.www.Cuponeria.repositories.PromocionRepository;
+
+
+@RestController
+@RequestMapping("/api/cliente")
+public class ClienteRest {
+
+	@Autowired
+	@Qualifier("ClienteRepository")
+	ClienteRepository repositorio;
+
+	@GetMapping()
+	public List<Cliente> listarClientes() {
+		return repositorio.findAll();
+	}
+
+	@PostMapping()
+	public ResponseEntity<?> insertarCliente(@RequestBody @Valid Cliente cli) {
+		if (!repositorio.existsById(cli.getCodigoCliente().toString())) {
+			repositorio.save(cli);
+			return ResponseEntity.ok().body("Cliente insertado exitosamente");
+		}
+		return ResponseEntity.status(500).body("Ya existe un cliente con este codigo");
+
+	}
+
+	@PutMapping()
+	public ResponseEntity<?> modificarClientes(@RequestBody @Valid Cliente cli) {
+		if (repositorio.existsById(cli.getCodigoCliente().toString())) {
+			repositorio.save(cli);
+			return ResponseEntity.ok().body("Cliente modificado");
+		}
+		return ResponseEntity.status(404).body("Este cliente no existe");
+
+	}
+
+	@DeleteMapping("/{codigo}")
+	public ResponseEntity<?> eliminarCliente(@PathVariable("codigo") Integer codigo) {
+		try {
+			if (repositorio.existsById(codigo.toString())) {
+				repositorio.deleteById(codigo.toString());
+				return ResponseEntity.ok().body("Cliente eliminado");
+			}
+			return ResponseEntity.status(404).body("No existe este Cliente");
+		} catch (Exception e) {
+			return ResponseEntity.status(500).body("No se puede eliminar");
+		}
+	}
+
+	
+}
