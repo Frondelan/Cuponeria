@@ -78,13 +78,8 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.2.3.Final</version>
-		</dependency>
+		</dependency>		
 		
-		<dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <scope>runtime</scope>
-        </dependency>
 		
 	</dependencies>
 
