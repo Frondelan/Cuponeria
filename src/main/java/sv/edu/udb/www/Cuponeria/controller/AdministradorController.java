@@ -67,7 +67,6 @@ public class AdministradorController {
 	
 	@GetMapping("/inicio")
 	public String inicioAdmin() {
-
 		
 		return "/administrador/principal";
 
