@@ -1,5 +1,5 @@
 package sv.edu.udb.www.Cuponeria.entities;
-// Generated 11-23-2018 05:14:17 PM by Hibernate Tools 4.3.1
+// Generated 11-23-2018 08:10:27 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -23,75 +23,57 @@ import javax.persistence.TemporalType;
 public class Cupones  implements java.io.Serializable {
 
 
-     private String id;
-     private Cliente cliente;
-     private EstadoCupon estadoCupon;
+     private String codigoCupon;
+     private Clientes clientes;
      private Promocion promocion;
-     private Date fechaCanje;
      private Date fechaCompra;
+     private Date fechaCambio;
+     private int estado;
+     private boolean confirmado;
 
     public Cupones() {
     }
 
-    public Cupones(String id, Cliente cliente, EstadoCupon estadoCupon, Promocion promocion, Date fechaCanje, Date fechaCompra) {
-       this.id = id;
-       this.cliente = cliente;
-       this.estadoCupon = estadoCupon;
+    public Cupones(String codigoCupon, Clientes clientes, Promocion promocion, Date fechaCompra, Date fechaCambio, int estado, boolean confirmado) {
+       this.codigoCupon = codigoCupon;
+       this.clientes = clientes;
        this.promocion = promocion;
-       this.fechaCanje = fechaCanje;
        this.fechaCompra = fechaCompra;
+       this.fechaCambio = fechaCambio;
+       this.estado = estado;
+       this.confirmado = confirmado;
     }
    
      @Id 
 
     
-    @Column(name="Id", unique=true, nullable=false, length=13)
-    public String getId() {
-        return this.id;
+    @Column(name="codigo_cupon", unique=true, nullable=false, length=13)
+    public String getCodigoCupon() {
+        return this.codigoCupon;
     }
     
-    public void setId(String id) {
-        this.id = id;
+    public void setCodigoCupon(String codigoCupon) {
+        this.codigoCupon = codigoCupon;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Id_cliente", nullable=false)
-    public Cliente getCliente() {
-        return this.cliente;
+    @JoinColumn(name="codigo_cliente", nullable=false)
+    public Clientes getClientes() {
+        return this.clientes;
     }
     
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setClientes(Clientes clientes) {
+        this.clientes = clientes;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Id_estado", nullable=false)
-    public EstadoCupon getEstadoCupon() {
-        return this.estadoCupon;
-    }
-    
-    public void setEstadoCupon(EstadoCupon estadoCupon) {
-        this.estadoCupon = estadoCupon;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Id_promocion", nullable=false)
+    @JoinColumn(name="codigo_promocion", nullable=false)
     public Promocion getPromocion() {
         return this.promocion;
     }
     
     public void setPromocion(Promocion promocion) {
         this.promocion = promocion;
-    }
-
-    @Temporal(TemporalType.DATE)
-    @Column(name="Fecha_canje", nullable=false, length=10)
-    public Date getFechaCanje() {
-        return this.fechaCanje;
-    }
-    
-    public void setFechaCanje(Date fechaCanje) {
-        this.fechaCanje = fechaCanje;
     }
 
     @Temporal(TemporalType.DATE)
@@ -102,6 +84,36 @@ public class Cupones  implements java.io.Serializable {
     
     public void setFechaCompra(Date fechaCompra) {
         this.fechaCompra = fechaCompra;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name="Fecha_cambio", nullable=false, length=10)
+    public Date getFechaCambio() {
+        return this.fechaCambio;
+    }
+    
+    public void setFechaCambio(Date fechaCambio) {
+        this.fechaCambio = fechaCambio;
+    }
+
+    
+    @Column(name="estado", nullable=false)
+    public int getEstado() {
+        return this.estado;
+    }
+    
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    
+    @Column(name="confirmado", nullable=false)
+    public boolean isConfirmado() {
+        return this.confirmado;
+    }
+    
+    public void setConfirmado(boolean confirmado) {
+        this.confirmado = confirmado;
     }
 
 

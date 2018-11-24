@@ -3,14 +3,11 @@
 
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="lacuponera"/>
-  <table-filter match-name="rubro"/>
-  <table-filter match-name="usuario"/>
-  <table-filter match-name="estado_oferta"/>
-  <table-filter match-name="promocion"/>
-  <table-filter match-name="estado_cupon"/>
-  <table-filter match-name="empresa"/>
-  <table-filter match-name="roles"/>
   <table-filter match-name="cupones"/>
-  <table-filter match-name="tipo_usuarios"/>
-  <table-filter match-name="cliente"/>
+  <table-filter match-name="promocion"/>
+  <table-filter match-name="rubros"/>
+  <table-filter match-name="empresas"/>
+  <table-filter match-name="empleados"/>
+  <table-filter match-name="usuarios"/>
+  <table-filter match-name="clientes"/>
 </hibernate-reverse-engineering>

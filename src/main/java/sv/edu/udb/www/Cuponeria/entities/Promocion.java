@@ -1,5 +1,5 @@
 package sv.edu.udb.www.Cuponeria.entities;
-// Generated 11-23-2018 05:14:17 PM by Hibernate Tools 4.3.1
+// Generated 11-23-2018 08:10:27 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -28,96 +28,86 @@ import javax.persistence.TemporalType;
 public class Promocion  implements java.io.Serializable {
 
 
-     private Integer id;
-     private Empresa empresa;
-     private EstadoOferta estadoOferta;
-     private String titulo;
+     private Integer codigoPromocion;
+     private Empresas empresas;
+     private String tituloOferta;
      private long precioRegular;
      private long precioOferta;
-     private int cuponesDisponibles;
      private Date fechaInicio;
-     private Date fechaLimite;
-     private String descripcionOferta;
-     private Date fechaLimiteUso;
-     private String img;
+     private Date fechaFin;
+     private Date fechaLimiteCupon;
+     private int cantidadCupones;
+     private String descripcion;
+     private String url;
+     private boolean estado;
      private Set<Cupones> cuponeses = new HashSet<Cupones>(0);
 
     public Promocion() {
     }
 
 	
-    public Promocion(Empresa empresa, EstadoOferta estadoOferta, String titulo, long precioRegular, long precioOferta, int cuponesDisponibles, Date fechaInicio, Date fechaLimite, String descripcionOferta, Date fechaLimiteUso, String img) {
-        this.empresa = empresa;
-        this.estadoOferta = estadoOferta;
-        this.titulo = titulo;
+    public Promocion(Empresas empresas, String tituloOferta, long precioRegular, long precioOferta, Date fechaInicio, Date fechaFin, Date fechaLimiteCupon, int cantidadCupones, String descripcion, String url, boolean estado) {
+        this.empresas = empresas;
+        this.tituloOferta = tituloOferta;
         this.precioRegular = precioRegular;
         this.precioOferta = precioOferta;
-        this.cuponesDisponibles = cuponesDisponibles;
         this.fechaInicio = fechaInicio;
-        this.fechaLimite = fechaLimite;
-        this.descripcionOferta = descripcionOferta;
-        this.fechaLimiteUso = fechaLimiteUso;
-        this.img = img;
+        this.fechaFin = fechaFin;
+        this.fechaLimiteCupon = fechaLimiteCupon;
+        this.cantidadCupones = cantidadCupones;
+        this.descripcion = descripcion;
+        this.url = url;
+        this.estado = estado;
     }
-    public Promocion(Empresa empresa, EstadoOferta estadoOferta, String titulo, long precioRegular, long precioOferta, int cuponesDisponibles, Date fechaInicio, Date fechaLimite, String descripcionOferta, Date fechaLimiteUso, String img, Set<Cupones> cuponeses) {
-       this.empresa = empresa;
-       this.estadoOferta = estadoOferta;
-       this.titulo = titulo;
+    public Promocion(Empresas empresas, String tituloOferta, long precioRegular, long precioOferta, Date fechaInicio, Date fechaFin, Date fechaLimiteCupon, int cantidadCupones, String descripcion, String url, boolean estado, Set<Cupones> cuponeses) {
+       this.empresas = empresas;
+       this.tituloOferta = tituloOferta;
        this.precioRegular = precioRegular;
        this.precioOferta = precioOferta;
-       this.cuponesDisponibles = cuponesDisponibles;
        this.fechaInicio = fechaInicio;
-       this.fechaLimite = fechaLimite;
-       this.descripcionOferta = descripcionOferta;
-       this.fechaLimiteUso = fechaLimiteUso;
-       this.img = img;
+       this.fechaFin = fechaFin;
+       this.fechaLimiteCupon = fechaLimiteCupon;
+       this.cantidadCupones = cantidadCupones;
+       this.descripcion = descripcion;
+       this.url = url;
+       this.estado = estado;
        this.cuponeses = cuponeses;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @Column(name="Id", unique=true, nullable=false)
-    public Integer getId() {
-        return this.id;
+    @Column(name="codigo_promocion", unique=true, nullable=false)
+    public Integer getCodigoPromocion() {
+        return this.codigoPromocion;
     }
     
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCodigoPromocion(Integer codigoPromocion) {
+        this.codigoPromocion = codigoPromocion;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Id_empresa", nullable=false)
-    public Empresa getEmpresa() {
-        return this.empresa;
+    @JoinColumn(name="id_empresa", nullable=false)
+    public Empresas getEmpresas() {
+        return this.empresas;
     }
     
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Id_estado", nullable=false)
-    public EstadoOferta getEstadoOferta() {
-        return this.estadoOferta;
-    }
-    
-    public void setEstadoOferta(EstadoOferta estadoOferta) {
-        this.estadoOferta = estadoOferta;
+    public void setEmpresas(Empresas empresas) {
+        this.empresas = empresas;
     }
 
     
-    @Column(name="Titulo", nullable=false, length=225)
-    public String getTitulo() {
-        return this.titulo;
+    @Column(name="titulo_oferta", nullable=false, length=50)
+    public String getTituloOferta() {
+        return this.tituloOferta;
     }
     
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setTituloOferta(String tituloOferta) {
+        this.tituloOferta = tituloOferta;
     }
 
     
-    @Column(name="Precio_regular", nullable=false, precision=10, scale=0)
+    @Column(name="precio_regular", nullable=false, precision=10, scale=0)
     public long getPrecioRegular() {
         return this.precioRegular;
     }
@@ -127,7 +117,7 @@ public class Promocion  implements java.io.Serializable {
     }
 
     
-    @Column(name="Precio_oferta", nullable=false, precision=10, scale=0)
+    @Column(name="precio_oferta", nullable=false, precision=10, scale=0)
     public long getPrecioOferta() {
         return this.precioOferta;
     }
@@ -136,18 +126,8 @@ public class Promocion  implements java.io.Serializable {
         this.precioOferta = precioOferta;
     }
 
-    
-    @Column(name="Cupones_disponibles", nullable=false)
-    public int getCuponesDisponibles() {
-        return this.cuponesDisponibles;
-    }
-    
-    public void setCuponesDisponibles(int cuponesDisponibles) {
-        this.cuponesDisponibles = cuponesDisponibles;
-    }
-
     @Temporal(TemporalType.DATE)
-    @Column(name="Fecha_inicio", nullable=false, length=10)
+    @Column(name="fecha_inicio", nullable=false, length=10)
     public Date getFechaInicio() {
         return this.fechaInicio;
     }
@@ -157,43 +137,63 @@ public class Promocion  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="Fecha_limite", nullable=false, length=10)
-    public Date getFechaLimite() {
-        return this.fechaLimite;
+    @Column(name="fecha_fin", nullable=false, length=10)
+    public Date getFechaFin() {
+        return this.fechaFin;
     }
     
-    public void setFechaLimite(Date fechaLimite) {
-        this.fechaLimite = fechaLimite;
-    }
-
-    
-    @Column(name="Descripcion_oferta", nullable=false, length=150)
-    public String getDescripcionOferta() {
-        return this.descripcionOferta;
-    }
-    
-    public void setDescripcionOferta(String descripcionOferta) {
-        this.descripcionOferta = descripcionOferta;
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="Fecha_limite_uso", nullable=false, length=10)
-    public Date getFechaLimiteUso() {
-        return this.fechaLimiteUso;
+    @Column(name="fecha_limite_cupon", nullable=false, length=10)
+    public Date getFechaLimiteCupon() {
+        return this.fechaLimiteCupon;
     }
     
-    public void setFechaLimiteUso(Date fechaLimiteUso) {
-        this.fechaLimiteUso = fechaLimiteUso;
+    public void setFechaLimiteCupon(Date fechaLimiteCupon) {
+        this.fechaLimiteCupon = fechaLimiteCupon;
     }
 
     
-    @Column(name="Img", nullable=false, length=225)
-    public String getImg() {
-        return this.img;
+    @Column(name="cantidad_cupones", nullable=false)
+    public int getCantidadCupones() {
+        return this.cantidadCupones;
     }
     
-    public void setImg(String img) {
-        this.img = img;
+    public void setCantidadCupones(int cantidadCupones) {
+        this.cantidadCupones = cantidadCupones;
+    }
+
+    
+    @Column(name="descripcion", nullable=false, length=65535)
+    public String getDescripcion() {
+        return this.descripcion;
+    }
+    
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    
+    @Column(name="url", nullable=false, length=100)
+    public String getUrl() {
+        return this.url;
+    }
+    
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    
+    @Column(name="estado", nullable=false)
+    public boolean isEstado() {
+        return this.estado;
+    }
+    
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="promocion")
